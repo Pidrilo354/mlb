@@ -431,6 +431,63 @@
             const ambient = document.getElementById('ambient');
             ambient.volume = 0.7;
         }
+<title>Определение местоположения</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        #location {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ваше местоположение</h1>
+    <div id="location">Определение местоположения...</div>
+
+    <script>
+        // Автоматически вызываем геолокацию при загрузке страницы
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById('location').innerHTML = "Геолокация не поддерживается вашим браузером.";
+            }
+        };
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            document.getElementById('location').innerHTML = 
+                Широта: ${latitude}<br>Долгота: ${longitude};
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById('location').innerHTML = "Пользователь отклонил запрос на получение местоположения.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById('location').innerHTML = "Информация о местоположении недоступна.";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById('location').innerHTML = "Запрос на получение местоположения истек.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById('location').innerHTML = "Произошла неизвестная ошибка.";
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
