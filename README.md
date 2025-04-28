@@ -1,108 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>БЕЗДНА: Исповедь твоего страха</title>
-    <style>
-        body {
-            font-family: 'Times New Roman', serif;
-            background-color: #000;
-            color: #c0c0c0;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(70, 0, 0, 0.3) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 0, 70, 0.3) 0%, transparent 20%);
-            min-height: 100vh;
-        }
 
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 30px;
-            position: relative;
-        }
-
-        h1 {
-            color: #8b0000;
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px #300;
-            letter-spacing: 2px;
-            font-weight: normal;
-            border-bottom: 1px solid #333;
-            padding-bottom: 20px;
-        }
-
-        .subtitle {
-            text-align: center;
-            font-style: italic;
-            color: #666;
-            margin-bottom: 50px;
-        }
-
-        .question {
-            background-color: rgba(10, 10, 10, 0.7);
-            border-left: 3px solid #8b0000;
-            padding: 25px;
-            margin-bottom: 30px;
-            display: none;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .question::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, transparent 0%, rgba(139, 0, 0, 0.1) 50%, transparent 100%);
-            animation: scanline 8s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        .active {
-            display: block;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h3 {
-            color: #a0a0a0;
-            font-size: 1.3rem;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
-        button {
-            background: none;
-            color: #c0c0c0;
-            border: 1px solid #333;
-            padding: 12px 25px;
-            margin: 10px 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
 
         button:hover {
             border-color: #8b0000;
@@ -165,7 +61,6 @@
         audio {
             display: none;
         }
-
         .warning {
             text-align: center;
             font-size: 0.8rem;
@@ -214,9 +109,8 @@
             <button onclick="nextQuestion(5)">Потому что я искал правду</button>
         </div>
         
-        <div id="question6" class="question">
-            <h3>6.Вы слышали голоса в своей голове? </h3>
-            <button onclick="nextQuestion(6)">Да, и они советовали мне d57rtyocx </button>
+        <div id="question6" class="question
+ onclick="nextQuestion(6)">Да, и они советовали мне d57rtyocx </button>
             <button onclick="nextQuestion(6)">"Нет, но они говорят, что я должен ответить "Да""</button>
         </div>
         
